@@ -46,10 +46,10 @@ public class Handler {
                                 .collect(Collectors.joining(", "));
                         return ServerResponse.badRequest().bodyValue(errors);
                     }
-
+                    System.out.println("dto = " + dto);
                     // ✅ mapear DTO → User
                     User user = UserMapper.toDomain(dto);
-
+                    System.out.println("serverRequest = " + user);
                     return userUseCase.saveUser(user)
                             .flatMap(saved -> ServerResponse.ok().bodyValue(saved));
                 });

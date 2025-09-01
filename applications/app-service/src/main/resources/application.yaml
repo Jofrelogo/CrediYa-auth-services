@@ -33,3 +33,9 @@ adapters:
     schema: "public"
     username: "postgres"
     password: "0123456"
+flyway:
+  enabled: true
+  url: jdbc:postgresql://localhost:5432/crediya_db
+  user: postgres
+  password: 0123456
+  locations: classpath:db/migration

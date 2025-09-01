@@ -10,9 +10,9 @@ import java.time.LocalDate;
 @Schema(name = "UserRequestDTO", description = "Data transfer object for creating a new user")
 public class UserRequestDTO {
 
-    @NotBlank(message = "Id is required")
+    @NotBlank(message = "Dni is required")
     @Schema(description = "Unique identifier of the user", example = "12345")
-    private String id;
+    private String dni;
 
     @NotBlank(message = "First name is required")
     @Size(min = 2, max = 50, message = "First name must be between 2 and 50 characters")
@@ -44,8 +44,8 @@ public class UserRequestDTO {
     @Schema(description = "Base salary of the user", example = "2500")
     private Double baseSalary;
 
-    public String getId() {
-        return id;
+    public String getDni() {
+        return dni;
     }
 
     public String getFirstName() {
@@ -76,8 +76,8 @@ public class UserRequestDTO {
         return baseSalary;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public void setFirstName(String firstName) {
@@ -111,7 +111,8 @@ public class UserRequestDTO {
     @Override
     public String toString() {
         return "User{" +
-                "firstName='" + firstName + '\'' +
+                "dni='"+ dni + '\'' +
+                " firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +

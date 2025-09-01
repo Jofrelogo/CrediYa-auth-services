@@ -6,7 +6,7 @@ import com.crediya.auth.model.user.User;
 public class UserMapper {
     public static User toDomain(UserRequestDTO dto) {
         return new User(
-                dto.getId(),
+                dto.getDni(),
                 dto.getFirstName(),
                 dto.getLastName(),
                 dto.getBirthDate(),

@@ -1,14 +1,14 @@
 package com.crediya.auth.r2dbc.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-@Table("user")
+@Table("auth_users")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -16,9 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 public class UserEntity {
 
-    @Id
-    @Column(name = "user_id")
-    private String id;
+    private String dni;
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
