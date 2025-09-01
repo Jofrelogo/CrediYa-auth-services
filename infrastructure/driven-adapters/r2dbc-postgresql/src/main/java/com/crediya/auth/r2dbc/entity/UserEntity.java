@@ -3,10 +3,9 @@ package com.crediya.auth.r2dbc.entity;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
+
 
 @Table("auth_users")
 @AllArgsConstructor
@@ -16,6 +15,8 @@ import java.util.UUID;
 @Builder
 public class UserEntity {
 
+    @Id
+    private String id;
     private String dni;
     private String firstName;
     private String lastName;

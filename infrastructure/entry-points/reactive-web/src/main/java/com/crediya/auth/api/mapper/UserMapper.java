@@ -1,10 +1,12 @@
 package com.crediya.auth.api.mapper;
 
 import com.crediya.auth.api.dto.UserRequestDTO;
+import com.crediya.auth.api.dto.UserResponseDTO;
 import com.crediya.auth.model.user.User;
 
 public class UserMapper {
-    public static User toDomain(UserRequestDTO dto) {
+
+    public static User requestToDomain(UserRequestDTO dto) {
         return new User(
                 dto.getDni(),
                 dto.getFirstName(),
@@ -14,6 +16,19 @@ public class UserMapper {
                 dto.getPhoneNumber(),
                 dto.getEmail(),
                 dto.getBaseSalary()
+        );
+    }
+
+    public static UserResponseDTO DomainToRespons(User user) {
+        return new UserResponseDTO(
+                user.getDni(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getBirthDate(),
+                user.getAddress(),
+                user.getPhoneNumber(),
+                user.getEmail(),
+                user.getBaseSalary()
         );
     }
 }

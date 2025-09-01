@@ -110,7 +110,7 @@ public class UserRequestDTO {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "User Request{" +
                 "dni='"+ dni + '\'' +
                 " firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
