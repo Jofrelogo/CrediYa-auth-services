@@ -34,4 +34,22 @@ sonar {
     }
 }
 
+jacoco {
+    toolVersion = "0.8.10" // versión recomendada
+}
+
+test {
+    useJUnitPlatform() // si usas JUnit5
+    finalizedBy jacocoTestReport // genera reporte después de los tests
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        csv.required = false
+        html.required = true // cambia enabled -> required
+    }
+}
+
 apply from: './main.gradle'

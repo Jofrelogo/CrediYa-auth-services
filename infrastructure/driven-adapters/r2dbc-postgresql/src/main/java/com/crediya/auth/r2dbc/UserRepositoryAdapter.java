@@ -7,6 +7,8 @@ import com.crediya.auth.model.user.gateways.UserRepository;
 import com.crediya.auth.r2dbc.entity.UserEntity;
 import com.crediya.auth.r2dbc.helper.ReactiveAdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
@@ -18,13 +20,19 @@ public class UserRepositoryAdapter extends ReactiveAdapterOperations<
         String,
         UserReactiveRepository
 > implements UserRepository {
+
+    private static final Logger log = LoggerFactory.getLogger(UserRepositoryAdapter.class);
+
     public UserRepositoryAdapter(UserReactiveRepository repository, ObjectMapper mapper) {
         super(repository, mapper, entity -> mapper.map(entity, User.class));
     }
 
     @Override
     public Mono<User> save(User user) {
+        log.debug("💾 Intentando guardar usuario con email={}", user.getEmail());
         return super.save(user)
+                .doOnSuccess(saved -> log.info("✅ Usuario persistido con email={}", saved.getEmail()))
+                .doOnError(DuplicateKeyException.class, ex -> log.warn("⚠️ Email duplicado: {}", user.getEmail()))
                 .onErrorMap(DuplicateKeyException.class,
                         ex -> new EmailAlreadyExistsException(user.getEmail()));
     }
@@ -32,6 +40,7 @@ public class UserRepositoryAdapter extends ReactiveAdapterOperations<
     @Override
     public Mono<User> findByEmail(String email) {
         return repository.findByEmail(email)
-                .switchIfEmpty(Mono.error(() -> new UserNotFoundException(email)));
+                .switchIfEmpty(Mono.error(() -> new UserNotFoundException(email)))
+                .doOnError(ex -> log.error("❌ Error al consultar usuario con email={}", email, ex));
     }
 }

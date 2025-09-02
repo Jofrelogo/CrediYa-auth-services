@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -16,5 +15,21 @@ public class ErrorResponse {
     private int status;              // Código HTTP
     private String error;
     private List<ErrorDetail> errors; // Lista de errores
+
+    public Instant getTimestamp() {
+        return timestamp;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public List<ErrorDetail> getErrors() {
+        return errors;
+    }
 }
 
