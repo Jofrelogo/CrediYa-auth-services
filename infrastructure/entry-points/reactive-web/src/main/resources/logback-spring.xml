@@ -1,0 +1,17 @@
+<configuration scan="true">
+
+    <!-- Nivel de logs global -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <!-- Appender consola -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logs DEBUG solo para tu código -->
+    <logger name="com.crediya" level="DEBUG"/>
+</configuration>

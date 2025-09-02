@@ -40,3 +40,7 @@ flyway:
   user: postgres
   password: 0123456
   locations: classpath:db/migration
+logging:
+  level:
+    root: INFO
+    com.crediya: DEBUG
