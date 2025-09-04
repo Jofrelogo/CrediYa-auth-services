@@ -1,6 +1,5 @@
 package com.crediya.auth.api.exception;
 
-import com.crediya.auth.api.Handler;
 import com.crediya.auth.model.common.DomainException;
 import com.crediya.auth.model.common.ErrorCode;
 import com.crediya.auth.model.common.ErrorDetail;
@@ -21,7 +20,7 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    private static final Logger log = LoggerFactory.getLogger(Handler.class);
+    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
     /**
      * Manejo de excepciones del dominio
      */

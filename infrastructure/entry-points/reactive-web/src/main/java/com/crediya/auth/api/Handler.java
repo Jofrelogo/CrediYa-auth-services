@@ -28,7 +28,7 @@ public class Handler {
     public Mono<ServerResponse> getUserByEmail(ServerRequest serverRequest) {
         String email = serverRequest.queryParam("email")
                 .orElseThrow(() -> new IllegalArgumentException("Email is required"));
-        log.info("📩 Request recibida para buscar usuario con email: {}", email);
+        log.info("📩 Request received to search for user with email: {}", email);
         return userUseCase.findByEmail(email)
                 .map(UserMapper::DomainToRespons)
                 .flatMap(user -> ServerResponse.ok().bodyValue(user))
@@ -38,11 +38,11 @@ public class Handler {
     public Mono<ServerResponse> createUser(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(UserRequestDTO.class)
                 .flatMap(dto -> {
-                    log.info("📩 Request recibida para crear usuario: {}", dto.getEmail());
+                    log.info("📩 Request received to create user: {}", dto.getEmail());
                     // ✅ Validación con Bean Validation
                     Set<ConstraintViolation<UserRequestDTO>> violations = validator.validate(dto);
                     if (!violations.isEmpty()) {
-                        log.warn("⚠️ Violaciones de validación en createUser: {}", violations);
+                        log.warn("⚠️ Validation violations in createUser: {}", violations);
                         throw new ConstraintViolationException(violations);
                     }
 

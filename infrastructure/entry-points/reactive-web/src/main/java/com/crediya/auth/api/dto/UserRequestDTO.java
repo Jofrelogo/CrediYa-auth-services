@@ -41,6 +41,7 @@ public class UserRequestDTO {
 
     @NotNull
     @Positive(message = "Base salary must be positive")
+    @Max(value = 15000000, message = "The maximum salary base is 15000000")
     @Schema(description = "Base salary of the user", example = "2500")
     private Double baseSalary;
 

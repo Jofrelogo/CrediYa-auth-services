@@ -29,10 +29,10 @@ public class UserRepositoryAdapter extends ReactiveAdapterOperations<
 
     @Override
     public Mono<User> save(User user) {
-        log.debug("💾 Intentando guardar usuario con email={}", user.getEmail());
+        log.debug("💾 Trying to save user with email={}", user.getEmail());
         return super.save(user)
-                .doOnSuccess(saved -> log.info("✅ Usuario persistido con email={}", saved.getEmail()))
-                .doOnError(DuplicateKeyException.class, ex -> log.warn("⚠️ Email duplicado: {}", user.getEmail()))
+                .doOnSuccess(saved -> log.info("✅ User persisted with email={}", saved.getEmail()))
+                .doOnError(DuplicateKeyException.class, ex -> log.warn("⚠️ Duplicate email: {}", user.getEmail()))
                 .onErrorMap(DuplicateKeyException.class,
                         ex -> new EmailAlreadyExistsException(user.getEmail()));
     }
@@ -41,6 +41,6 @@ public class UserRepositoryAdapter extends ReactiveAdapterOperations<
     public Mono<User> findByEmail(String email) {
         return repository.findByEmail(email)
                 .switchIfEmpty(Mono.error(() -> new UserNotFoundException(email)))
-                .doOnError(ex -> log.error("❌ Error al consultar usuario con email={}", email, ex));
+                .doOnError(ex -> log.error("❌ Trying to save user with email={}", email, ex));
     }
 }
