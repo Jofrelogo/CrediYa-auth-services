@@ -44,3 +44,6 @@ logging:
   level:
     root: INFO
     com.crediya: DEBUG
+jwt:
+  secret: "miClaveSuperSecretaDeMasDe32CaracteresSeguro123!"
+  expiration: 3600000

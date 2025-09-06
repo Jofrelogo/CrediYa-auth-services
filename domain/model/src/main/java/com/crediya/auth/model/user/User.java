@@ -23,6 +23,10 @@ public class User {
     private String email;
     private Double baseSalary;
 
+    private String passwordHash;
+    private String role;           // "ADMIN", "ASESOR", "CLIENTE"
+    private Boolean enabled;
+
 
     @Override
     public String toString() {
@@ -32,6 +36,8 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", role='" + role + '\'' +
+                ", enabled='" + enabled + '\'' +
                 '}';
     }
 }

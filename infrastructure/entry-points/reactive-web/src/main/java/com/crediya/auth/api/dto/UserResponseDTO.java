@@ -1,6 +1,7 @@
 package com.crediya.auth.api.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,6 +37,12 @@ public class UserResponseDTO {
 
     @Schema(description = "user baseSalary", example = "25000")
     private Double baseSalary;
+
+    @Schema(description = "Role of the user", example = "ADMIN")
+    private String role;// "ADMIN", "ASESOR", "CLIENTE"
+
+    @Schema(description = "Enabled User ", example = "True")
+    private Boolean enabled;
 
     public String getDni() {
         return dni;
@@ -101,6 +108,22 @@ public class UserResponseDTO {
         this.baseSalary = baseSalary;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public String toString() {
         return "User Respons{" +
@@ -109,6 +132,8 @@ public class UserResponseDTO {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", role='" + role + '\'' +
+                ", enabled='" + enabled + '\'' +
                 '}';
     }
 }

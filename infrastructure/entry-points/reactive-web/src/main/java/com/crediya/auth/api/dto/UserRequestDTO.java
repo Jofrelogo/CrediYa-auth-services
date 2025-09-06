@@ -45,6 +45,18 @@ public class UserRequestDTO {
     @Schema(description = "Base salary of the user", example = "2500")
     private Double baseSalary;
 
+    @NotNull
+    @Schema(description = "Password of the user", example = "********")
+    private String passwordHash;
+
+    @NotNull
+    @Schema(description = "Role of the user", example = "ADMIN")
+    private String role;// "ADMIN", "ASESOR", "CLIENTE"
+
+    @NotNull
+    @Schema(description = "Enabled User ", example = "True")
+    private Boolean enabled;
+
     public String getDni() {
         return dni;
     }
@@ -109,14 +121,40 @@ public class UserRequestDTO {
         this.baseSalary = baseSalary;
     }
 
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public String toString() {
-        return "User Request{" +
+        return "User{" +
                 "dni='"+ dni + '\'' +
                 " firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", role='" + role + '\'' +
+                ", enabled='" + enabled + '\'' +
                 '}';
     }
 }

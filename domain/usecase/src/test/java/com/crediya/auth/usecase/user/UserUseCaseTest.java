@@ -1,5 +1,6 @@
 package com.crediya.auth.usecase.user;
 
+import com.crediya.auth.model.jwt.PasswordHashProvider;
 import com.crediya.auth.model.user.User;
 import com.crediya.auth.model.user.exceptions.EmailAlreadyExistsException;
 import com.crediya.auth.model.user.exceptions.UserNotFoundException;
@@ -16,11 +17,12 @@ class UserUseCaseTest {
 
     private UserRepository userRepository;
     private UserUseCase userUseCase;
+    private PasswordHashProvider passwordHashProvider;
 
     @BeforeEach
     void setUp() {
         userRepository = mock(UserRepository.class);
-        userUseCase = new UserUseCase(userRepository);
+        userUseCase = new UserUseCase(userRepository, passwordHashProvider);
     }
 
     @Test

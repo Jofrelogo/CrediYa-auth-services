@@ -29,5 +29,8 @@ public class UserEntity {
     private String phoneNumber;
     private String email;
     private Double baseSalary;
+    private String passwordHash;
+    private String role;           // "ADMIN", "ASESOR", "CLIENTE"
+    private Boolean enabled;
     private LocalDateTime createdAt;
 }

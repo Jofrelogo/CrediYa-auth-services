@@ -30,7 +30,7 @@ public class Handler {
                 .orElseThrow(() -> new IllegalArgumentException("Email is required"));
         log.info("📩 Request received to search for user with email: {}", email);
         return userUseCase.findByEmail(email)
-                .map(UserMapper::DomainToRespons)
+                .map(UserMapper::domainToRespons)
                 .flatMap(user -> ServerResponse.ok().bodyValue(user))
                 .switchIfEmpty(ServerResponse.notFound().build());
     }
@@ -50,7 +50,7 @@ public class Handler {
                     return userUseCase.saveUser(UserMapper.requestToDomain(dto))
                             .doOnNext(user -> log.info("✅ Usuario guardado: {}", user.getEmail()))
                             .doOnError(err -> log.error("❌ Error guardando usuario {}", dto.getEmail(), err))
-                            .map(UserMapper::DomainToRespons)
+                            .map(UserMapper::domainToRespons)
                             .flatMap(saved -> ServerResponse.ok().bodyValue(saved));
                 });
     }

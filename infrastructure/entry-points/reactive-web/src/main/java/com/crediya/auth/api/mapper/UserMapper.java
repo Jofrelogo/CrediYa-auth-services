@@ -15,11 +15,14 @@ public class UserMapper {
                 dto.getAddress(),
                 dto.getPhoneNumber(),
                 dto.getEmail(),
-                dto.getBaseSalary()
+                dto.getBaseSalary(),
+                dto.getPasswordHash(),
+                dto.getRole(),
+                dto.getEnabled()
         );
     }
 
-    public static UserResponseDTO DomainToRespons(User user) {
+    public static UserResponseDTO domainToRespons(User user) {
         return new UserResponseDTO(
                 user.getDni(),
                 user.getFirstName(),
@@ -28,7 +31,9 @@ public class UserMapper {
                 user.getAddress(),
                 user.getPhoneNumber(),
                 user.getEmail(),
-                user.getBaseSalary()
+                user.getBaseSalary(),
+                user.getRole(),
+                user.getEnabled()
         );
     }
 }

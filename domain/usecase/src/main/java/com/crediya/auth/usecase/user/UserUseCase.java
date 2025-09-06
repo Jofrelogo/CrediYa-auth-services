@@ -1,5 +1,6 @@
 package com.crediya.auth.usecase.user;
 
+import com.crediya.auth.model.jwt.PasswordHashProvider;
 import com.crediya.auth.model.user.User;
 import com.crediya.auth.model.user.exceptions.UserNotFoundException;
 import com.crediya.auth.model.user.gateways.UserRepository;
@@ -11,9 +12,14 @@ import reactor.core.publisher.Mono;
 public class UserUseCase {
 
     private final UserRepository userRepository;
+    private final PasswordHashProvider passwordHashProvider;
 
     public Mono<User> saveUser(User user){
-        return  userRepository.save(user);
+
+        String encodedPassword = passwordHashProvider.encode(user.getPasswordHash());
+        user.setPasswordHash(encodedPassword);
+
+        return userRepository.save(user);
     }
 
     public Mono<User> findByEmail(String email){
