@@ -48,8 +48,8 @@ public class Handler {
 
                     // ✅ Guardar usuario
                     return userUseCase.saveUser(UserMapper.requestToDomain(dto))
-                            .doOnNext(user -> log.info("✅ Usuario guardado: {}", user.getEmail()))
-                            .doOnError(err -> log.error("❌ Error guardando usuario {}", dto.getEmail(), err))
+                            .doOnNext(user -> log.info("✅ Save user: {}", user.getEmail()))
+                            .doOnError(err -> log.error("❌ Error Saving user {}", dto.getEmail(), err))
                             .map(UserMapper::domainToRespons)
                             .flatMap(saved -> ServerResponse.ok().bodyValue(saved));
                 });

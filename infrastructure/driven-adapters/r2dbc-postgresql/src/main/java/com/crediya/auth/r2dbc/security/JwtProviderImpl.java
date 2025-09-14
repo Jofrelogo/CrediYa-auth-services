@@ -4,12 +4,15 @@ import com.crediya.auth.model.jwt.JwtProvider;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.security.Key;
 import java.util.Date;
 
-
 public class JwtProviderImpl implements JwtProvider {
 
+    private static final Logger log = LoggerFactory.getLogger(JwtProviderImpl.class);
     private Key key;
     private final long expiration;
 
@@ -20,6 +23,7 @@ public class JwtProviderImpl implements JwtProvider {
 
     @Override
     public String generateToken(String dni, String email, String role) {
+        log.debug("🔑 Generating JWT token for email={}, role={}", email, role);
         return Jwts.builder()
                 .setSubject(email)
                 .claim("dni", dni)
@@ -36,6 +40,7 @@ public class JwtProviderImpl implements JwtProvider {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
             return true;
         } catch (Exception ex) {
+            log.warn("❌ Invalid JWT token", ex);
             return false;
         }
     }
