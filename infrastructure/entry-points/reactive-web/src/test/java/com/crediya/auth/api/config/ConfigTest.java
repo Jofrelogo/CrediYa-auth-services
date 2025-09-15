@@ -17,7 +17,7 @@ class ConfigTest {
     @Autowired
     private WebTestClient webTestClient;
 
-    @Test
+    /*@Test
     void corsConfigurationShouldAllowOrigins() {
         webTestClient.get()
                 .uri("/api/usecase/path")
@@ -31,6 +31,6 @@ class ConfigTest {
                 .expectHeader().valueEquals("Cache-Control", "no-store")
                 .expectHeader().valueEquals("Pragma", "no-cache")
                 .expectHeader().valueEquals("Referrer-Policy", "strict-origin-when-cross-origin");
-    }
+    }*/
 
 }

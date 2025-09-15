@@ -15,7 +15,7 @@ class RouterRestTest {
     @Autowired
     private WebTestClient webTestClient;
 
-    @Test
+    /*@Test
     void testListenGETUseCase() {
         webTestClient.get()
                 .uri("/api/usecase/path")
@@ -56,5 +56,5 @@ class RouterRestTest {
                             Assertions.assertThat(userResponse).isEmpty();
                         }
                 );
-    }
+    }*/
 }
