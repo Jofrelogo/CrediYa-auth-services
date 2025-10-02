@@ -26,7 +26,6 @@ public class JwtAuthenticationManager implements ReactiveAuthenticationManager {
         if (!jwtProvider.validateToken(authToken)) {
             return Mono.empty();
         }
-
         String username = jwtProvider.getEmailFromToken(authToken);
         String role = jwtProvider.getRoleFromToken(authToken);
 
